@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Instructions from './components/Instructions';
 
 function App() {
@@ -21,10 +21,15 @@ function App() {
       alert("Oops, you need to add a valid task!")
       return;
     }
+    if (searchInput.trim().length > 25) {
+      alert("Sorry, your todo is longer than 25 characters!")
+      return;
+    }
 
     const newTodo = {
       id: crypto.randomUUID(),
       text: searchInput.trim(),
+      // timestamp: new Date().toLocaleTimeString(),
     };
 
     setTodos([...todos, newTodo])
